@@ -19,9 +19,9 @@ public class MainApp extends JFrame {
     public void setSimulador(PanelPrincipal simulador) {
         this.simulador = simulador;
     }
-    private Timer timerSimulador;
-    private Timer vehicleGeneratorTimer;
-    private Timer timerSemaforos;
+    private Timer timerActualizarSimulacion;
+    private Timer timerGeneradorVehiculo;
+    private Timer timerCambiarSemaforos;
     private int contadorVertical = 0;
     private int contadorHorizontal = 0;
 
@@ -59,7 +59,7 @@ public class MainApp extends JFrame {
             guardarSimulacion();
             JOptionPane.showMessageDialog(
                 this,
-                    "\t\t DATOS RECOPILADOS:\n Vehículos Sur: "+ simulador.getNorthSouthCount()+"\n Vehículos Este: " + simulador.getesteCount()+
+                    "\t\t DATOS RECOPILADOS:\n Vehículos Sur: "+ simulador.getContadorNorteSur()+"\n Vehículos Este: " + simulador.getesteCount()+
                             "\n Vehículos Oeste: " + simulador.getoesteCount()+"\n\n"+
                 "Los datos de la simulación se han guardado correctamente en: \n                            simulation_history.txt",
                 "Guardado Exitoso",
@@ -71,23 +71,23 @@ public class MainApp extends JFrame {
      
     private void manejoTimers() {
         // Timer principal para la actualización de la simulación (60 FPS)
-        timerSimulador = new Timer(16, e -> {
+        timerActualizarSimulacion = new Timer(16, e -> {
             simulador.actualizarCoches();
             repaint();
         });
-        timerSimulador.start();
+        timerActualizarSimulacion.start();
 
         // Timer para generar nuevos vehículos
-        vehicleGeneratorTimer = new Timer(2000, e -> {
+        timerGeneradorVehiculo = new Timer(2000, e -> {
             simulador.agregarCoche();
         });
-        vehicleGeneratorTimer.start();
+        timerGeneradorVehiculo.start();
 
         // Timer para cambiar los semáforos
-        timerSemaforos = new Timer(10000, e -> {
+        timerCambiarSemaforos = new Timer(10000, e -> {
             simulador.cambiarLuzSemaforos();
         });
-        timerSemaforos.start();
+        timerCambiarSemaforos.start();
     }
 
      public void guardarSimulacion() {
@@ -97,7 +97,7 @@ public class MainApp extends JFrame {
             String data = String.format(
                 "%s - Norte/Sur: %d, Oeste: %d%n, Este: %d%n",
                 now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
-                simulador.getNorthSouthCount(),
+                simulador.getContadorNorteSur(),
                 simulador.getoesteCount(),
                 simulador.getesteCount()
             );

@@ -12,8 +12,8 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public class Coche {
-    private double x;
-    private double y;
+    private double posX;
+    private double posY;
     private double speedX;
     private double speedY;
     public Color color;
@@ -21,8 +21,8 @@ public class Coche {
     private static final int HEIGHT = 20;
 
     public Coche(double x, double y, double speedX, double speedY) {
-        this.x = x;
-        this.y = y;
+        this.posX = x;
+        this.posY = y;
         this.speedX = speedX;
         this.speedY = speedY;
         // Color aleatorio para los vehículos (evitando colores muy claros)
@@ -34,13 +34,13 @@ public class Coche {
     }
 
     public void mover() {
-        x += speedX;
-        y += speedY;
+        posX += speedX;
+        posY += speedY;
     }
 
     public void dibujar(Graphics2D g) {
         AffineTransform old = g.getTransform();
-        g.translate(x, y);
+        g.translate(posX, posY);
 
         // Rotar según la dirección
         if (speedX != 0) {
@@ -81,12 +81,12 @@ public class Coche {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int)x, (int)y, WIDTH, HEIGHT);
+        return new Rectangle((int)posX, (int)posY, WIDTH, HEIGHT);
     }
 
     // Getters
-    public double getX() { return x; }
-    public double getY() { return y; }
+    public double getPosX() { return posX; }
+    public double getPosY() { return posY; }
     public double getSpeedX() { return speedX; }
     public double getSpeedY() { return speedY; }
 

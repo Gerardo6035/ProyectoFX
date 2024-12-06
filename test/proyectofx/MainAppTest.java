@@ -17,9 +17,9 @@ public class MainAppTest {
         MainApp mainApp = new MainApp();
 
         // Simula algunos datos de vehículos
-        mainApp.simulador.setNorthSouthCount(10);
-        mainApp.simulador.setOesteCount(5);
-        mainApp.simulador.setEsteCount(8);
+        mainApp.simulador.setContadorNorteSur(10);
+        mainApp.simulador.setContadorOeste(5);
+        mainApp.simulador.setContadorEste(8);
 
         // Llama al método guardarSimulacion()
         mainApp.guardarSimulacion();

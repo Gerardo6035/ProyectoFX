@@ -23,14 +23,14 @@ public class PanelPrincipalTest {
         panel.actualizarCoches();
 
         // Verifica que las posiciones de los coches se hayan actualizado
-        assertEquals(440, coches.get(0).getX(), 0.001); // Sur: x se mantiene igual
-        assertEquals(105, coches.get(0).getY(), 0.001); // Sur: y aumenta
+        assertEquals(440, coches.get(0).getPosX(), 0.001); // Sur: x se mantiene igual
+        assertEquals(105, coches.get(0).getPosY(), 0.001); // Sur: y aumenta
 
-        assertEquals(105, coches.get(1).getX(), 0.001); // Este: x aumenta
-        assertEquals(270, coches.get(1).getY(), 0.001); // Este: y se mantiene igual
+        assertEquals(105, coches.get(1).getPosX(), 0.001); // Este: x aumenta
+        assertEquals(270, coches.get(1).getPosY(), 0.001); // Este: y se mantiene igual
 
-        assertEquals(695, coches.get(2).getX(), 0.001); // Oeste: x disminuye
-        assertEquals(340, coches.get(2).getY(), 0.001); // Oeste: y se mantiene igual
+        assertEquals(695, coches.get(2).getPosX(), 0.001); // Oeste: x disminuye
+        assertEquals(340, coches.get(2).getPosY(), 0.001); // Oeste: y se mantiene igual
     }
 
     @Test
@@ -89,7 +89,7 @@ public class PanelPrincipalTest {
         Coche cocheOeste = new Coche(700, 340, -5, 0); // Oeste
 
         panel.actualizarContador(cocheSur);
-        assertEquals(1, panel.getNorthSouthCount());
+        assertEquals(1, panel.getContadorNorteSur());
 
         panel.actualizarContador(cocheEste);
         assertEquals(1, panel.getesteCount());

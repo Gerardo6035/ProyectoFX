@@ -12,8 +12,8 @@ public class CocheTest {
     public void testMover() {
         Coche coche = new Coche(100, 100, 2, 3);
         coche.mover();
-        assertEquals(102, coche.getX(), 0.001);
-        assertEquals(103, coche.getY(), 0.001);
+        assertEquals(102, coche.getPosX(), 0.001);
+        assertEquals(103, coche.getPosY(), 0.001);
     }
 
     @Test

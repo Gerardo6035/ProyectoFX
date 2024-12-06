@@ -12,30 +12,30 @@ package proyectofx;
 import java.awt.*;
 
 public class Semaforos {
-    private int x;
-    private int y;
+    private int posX;
+    private int posY;
     private boolean esverde;
-    private static final int tamano_luz = 20;
-    private static final int espacio = 25;
+    private static final int TAMANO_LUZ = 20;
+    private static final int ESPACIO_LUCES = 25;
 
     public Semaforos(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.posX = x;
+        this.posY = y;
         this.esverde = false;
     }
 
     public void dibujar(Graphics2D g) {
         // Dibujar luz roja
         g.setColor(esverde ? Color.DARK_GRAY : Color.RED);
-        g.fillOval(x, y, tamano_luz, tamano_luz);
+        g.fillOval(posX, posY, TAMANO_LUZ, TAMANO_LUZ);
 
         // Dibujar luz amarilla
         g.setColor(Color.DARK_GRAY);
-        g.fillOval(x, y + espacio, tamano_luz, tamano_luz);
+        g.fillOval(posX, posY + ESPACIO_LUCES, TAMANO_LUZ, TAMANO_LUZ);
 
         // Dibujar luz verde
         g.setColor(esverde ? Color.GREEN : Color.DARK_GRAY);
-        g.fillOval(x, y + espacio * 2, tamano_luz, tamano_luz);
+        g.fillOval(posX, posY + ESPACIO_LUCES * 2, TAMANO_LUZ, TAMANO_LUZ);
     }
 
     public void setGreen(boolean esverde) {

@@ -13,8 +13,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Sonidos {
-    public String avance= "C:\\Users\\52229\\Downloads\\S21002431CruceVial\\ProyectoFX\\resources\\Avance.wav";    // Ajusta estas rutas según
-    public String detengase = "C:\\Users\\52229\\Downloads\\S21002431CruceVial\\ProyectoFX\\resources\\Detengase.wav"; // tu estructura de carpetas
+    public String AVANCE_SONIDO= "C:\\Users\\52229\\Downloads\\S21002431CruceVial\\ProyectoFX\\resources\\Avance.wav";    // Ajusta estas rutas según
+    public String DETENGASE_SONIDO = "C:\\Users\\52229\\Downloads\\S21002431CruceVial\\ProyectoFX\\resources\\Detengase.wav"; // tu estructura de carpetas
     
       public void reproducirSonido(String archivoSonido) {
         try {
@@ -45,11 +45,11 @@ public class Sonidos {
     }
 
     public void reproducirVerde() {
-        reproducirSonido(avance);
+        reproducirSonido(AVANCE_SONIDO);
     }
 
     public void reproducirRojo() {
-        reproducirSonido(detengase);
+        reproducirSonido(DETENGASE_SONIDO);
     }
     
     // Nuevo método para reproducir ambos sonidos con un pequeño delay

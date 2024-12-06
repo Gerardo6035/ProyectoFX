@@ -24,13 +24,13 @@ import javax.imageio.ImageIO;
 public class PanelPrincipal extends JPanel {
     public List<Coche> carro;
     public List<Semaforos> semaforos;
-    private Image backgroundImage;
-    private Image backgroundImage2;
-    private int northSouthCount;
-    private int oesteCount;
-    private int esteCount;
-    private BufferedImage backgroundBuffer;
-    private Sonidos soundSystem = new Sonidos();
+    private Image fondoImagen;
+    private Image fondoImagen2;
+    private int contadorNorteSur;
+    private int contadorOeste;
+    private int contadorEste;
+    private BufferedImage fondoBuffer;
+    private Sonidos sonidoSistema = new Sonidos();
     
     // Constantes para las posiciones de las calles
     private static final int VERTICAL_STREET_X = 440;
@@ -39,16 +39,16 @@ public class PanelPrincipal extends JPanel {
     private static final int HORIZONTAL_STREET_HEIGHT = 120;
     private static final Rectangle INTERSECTION = new Rectangle(325, 225, 100, 100);
 
-    public void setNorthSouthCount(int northSouthCount) {
-        this.northSouthCount = northSouthCount;
+    public void setContadorNorteSur(int contadorNorteSur) {
+        this.contadorNorteSur = contadorNorteSur;
     }
 
-    public void setOesteCount(int oesteCount) {
-        this.oesteCount = oesteCount;
+    public void setContadorOeste(int contadorOeste) {
+        this.contadorOeste = contadorOeste;
     }
 
-    public void setEsteCount(int esteCount) {
-        this.esteCount = esteCount;
+    public void setContadorEste(int contadorEste) {
+        this.contadorEste = contadorEste;
     }
 
 
@@ -68,12 +68,12 @@ public class PanelPrincipal extends JPanel {
         
         if (width <= 0 || height <= 0) return;
         
-        if (backgroundBuffer == null || 
-            backgroundBuffer.getWidth() != width || 
-            backgroundBuffer.getHeight() != height) {
+        if (fondoBuffer == null || 
+            fondoBuffer.getWidth() != width || 
+            fondoBuffer.getHeight() != height) {
             
-            backgroundBuffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2d = backgroundBuffer.createGraphics();
+            fondoBuffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = fondoBuffer.createGraphics();
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             
             // Dibujar elementos estáticos
@@ -100,12 +100,12 @@ public class PanelPrincipal extends JPanel {
         try {
            
             String imagePath = "C:\\Users\\52229\\Downloads\\S21002431CruceVial\\ProyectoFX\\resources\\maxresdefault.jpg";
-            backgroundImage = ImageIO.read(new File(imagePath));
+            fondoImagen = ImageIO.read(new File(imagePath));
         } catch (IOException e) {
             e.printStackTrace();
             
-            backgroundImage = null;
-            backgroundImage2 = null;
+            fondoImagen = null;
+            fondoImagen2 = null;
         }
     }
      
@@ -121,9 +121,9 @@ public class PanelPrincipal extends JPanel {
         super.paintComponent(g);
         verificarBuffer();
         
-        if (backgroundBuffer != null) {
+        if (fondoBuffer != null) {
             Graphics2D g2d = (Graphics2D) g;
-            g2d.drawImage(backgroundBuffer, 0, 0, this);
+            g2d.drawImage(fondoBuffer, 0, 0, this);
             
             // Dibujar elementos dinámicos
             for (Semaforos light : semaforos) {
@@ -144,9 +144,9 @@ public class PanelPrincipal extends JPanel {
     //CREACION FACULTAD
     g2d.setColor(Color.lightGray);
     g2d.fillRect(VERTICAL_STREET_X+100,570, getWidth(), getHeight());
-    if (backgroundImage != null) {
+    if (fondoImagen != null) {
             // La imagen se dibuja debajo de la carretera horizontal
-            g2d.drawImage(backgroundImage, 
+            g2d.drawImage(fondoImagen, 
                          550, // x position
                          600, // y position (debajo de la carretera)
                          400, // width
@@ -381,9 +381,9 @@ private void crearFaroles(Graphics2D g2d) {
     private void mostrarEstadisticas(Graphics2D g2d) {
         g2d.setColor(Color.WHITE);
         g2d.setFont(new Font("Arial", Font.BOLD, 14));
-        g2d.drawString("Vehículos Sur: " + northSouthCount, 10, 20);
-        g2d.drawString("Vehículos Oeste: " + oesteCount, 10, 40);
-        g2d.drawString("Vehículos Este: " + esteCount, 10, 60);
+        g2d.drawString("Vehículos Sur: " + contadorNorteSur, 10, 20);
+        g2d.drawString("Vehículos Oeste: " + contadorOeste, 10, 40);
+        g2d.drawString("Vehículos Este: " + contadorEste, 10, 60);
     }
 
     public void actualizarCoches() {
@@ -427,21 +427,21 @@ private boolean verificarCocheEnfrente(Coche vehicle) {
         if (!esMismaDireccion(vehicle, otherVehicle)) continue;
         
         if (vehicle.getSpeedY() > 0) { // Dirección sur
-            if (otherVehicle.getX() == vehicle.getX() && 
-                otherVehicle.getY() > vehicle.getY() && 
-                otherVehicle.getY() - vehicle.getY() <= SAFE_DISTANCE) {
+            if (otherVehicle.getPosX() == vehicle.getPosX() && 
+                otherVehicle.getPosY() > vehicle.getPosY() && 
+                otherVehicle.getPosY() - vehicle.getPosY() <= SAFE_DISTANCE) {
                 return true;
             }
         } else if (vehicle.getSpeedX() > 0) { // Dirección este
-            if (otherVehicle.getY() == vehicle.getY() && 
-                otherVehicle.getX() > vehicle.getX() && 
-                otherVehicle.getX() - vehicle.getX() <= SAFE_DISTANCE) {
+            if (otherVehicle.getPosY() == vehicle.getPosY() && 
+                otherVehicle.getPosX() > vehicle.getPosX() && 
+                otherVehicle.getPosX() - vehicle.getPosX() <= SAFE_DISTANCE) {
                 return true;
             }
         } else if (vehicle.getSpeedX() < 0) { // Dirección oeste
-            if (otherVehicle.getY() == vehicle.getY() && 
-                otherVehicle.getX() < vehicle.getX() && 
-                vehicle.getX() - otherVehicle.getX() <= SAFE_DISTANCE) {
+            if (otherVehicle.getPosY() == vehicle.getPosY() && 
+                otherVehicle.getPosX() < vehicle.getPosX() && 
+                vehicle.getPosX() - otherVehicle.getPosX() <= SAFE_DISTANCE) {
                 return true;
             }
         }
@@ -460,11 +460,11 @@ private boolean esMismaDireccion(Coche v1, Coche v2) {
         Point stopPosition = calcularParada(vehicle);
         if (stopPosition != null) {
             if (vehicle.getSpeedY() > 0) { // Dirección sur
-                return vehicle.getY() >= stopPosition.y - 50 && vehicle.getY() <= stopPosition.y;
+                return vehicle.getPosY() >= stopPosition.y - 50 && vehicle.getPosY() <= stopPosition.y;
             } else if (vehicle.getSpeedX() > 0) { // Dirección este
-                return vehicle.getX() >= stopPosition.x - 50 && vehicle.getX() <= stopPosition.x;
+                return vehicle.getPosX() >= stopPosition.x - 50 && vehicle.getPosX() <= stopPosition.x;
             } else if (vehicle.getSpeedX() < 0) { // Dirección oeste
-                return vehicle.getX() <= stopPosition.x + 50 && vehicle.getX() >= stopPosition.x;
+                return vehicle.getPosX() <= stopPosition.x + 50 && vehicle.getPosX() >= stopPosition.x;
             }
         }
     }
@@ -506,28 +506,28 @@ public void cambiarLuzSemaforos() {
     semaforos.get(2).setGreen(esLuzVerde);  // Oeste
     
     // Reproducir los sonidos para ambas direcciones
-    soundSystem.reproducirAmbos(!esLuzVerde);
+    sonidoSistema.reproducirAmbos(!esLuzVerde);
 }
 
     // Getters para las estadísticas
-    public int getNorthSouthCount() { return northSouthCount; }
-    public int getoesteCount() { return oesteCount; }
-    public int getesteCount() { return esteCount; }
+    public int getContadorNorteSur() { return contadorNorteSur; }
+    public int getoesteCount() { return contadorOeste; }
+    public int getesteCount() { return contadorEste; }
 
     public void actualizarContador(Coche vehicle) {
         if (vehicle.getSpeedY() != 0) {
-            northSouthCount++;
+            contadorNorteSur++;
         }else{
             if (vehicle.getSpeedX() > 0) {
-                esteCount++;
+                contadorEste++;
         }else{
-                oesteCount++;
+                contadorOeste++;
             }        
         } 
     }
 
     public boolean yaCruzo(Coche vehicle) {
-        return vehicle.getX() < -50 || vehicle.getX() > getWidth() + 50 ||
-               vehicle.getY() < -50 || vehicle.getY() > getHeight() + 50;
+        return vehicle.getPosX() < -50 || vehicle.getPosX() > getWidth() + 50 ||
+               vehicle.getPosY() < -50 || vehicle.getPosY() > getHeight() + 50;
     }
 }

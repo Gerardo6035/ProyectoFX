@@ -20,9 +20,9 @@ public class CocheDatosTest {
             
             // Verificamos que las coordenadas estén dentro de rangos razonables
             assertTrue("Coordenada x fuera de rango", 
-                coche.getX() >= -50 && coche.getX() <= anchura + 50);
+                coche.getPosX() >= -50 && coche.getPosX() <= anchura + 50);
             assertTrue("Coordenada y fuera de rango", 
-                coche.getY() >= -50 && coche.getY() <= altura + 50);
+                coche.getPosY() >= -50 && coche.getPosY() <= altura + 50);
             
             // Verificamos que la velocidad sea correcta
             double velocidadTotal = Math.sqrt(
@@ -30,7 +30,7 @@ public class CocheDatosTest {
                 coche.getSpeedY() * coche.getSpeedY()
             );
             assertEquals("La velocidad debería ser 6", 
-                CocheDatos.velocidad, velocidadTotal, 0.001);
+                CocheDatos.VELOCIDAD_COCHE, velocidadTotal, 0.001);
         }
     }
 }

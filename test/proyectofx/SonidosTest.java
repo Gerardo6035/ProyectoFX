@@ -12,10 +12,10 @@ public class SonidosTest {
 
         // Verifica que la ruta del archivo de sonido para "verde" sea correcta
         String expectedPath = "C:\\Users\\52229\\Downloads\\S21002431CruceVial\\ProyectoFX\\resources\\Avance.wav";
-        assertEquals(expectedPath, sonidos.avance); // Necesitas hacer que 'avance' sea accesible (público o con un getter)
+        assertEquals(expectedPath, sonidos.AVANCE_SONIDO); // Necesitas hacer que 'avance' sea accesible (público o con un getter)
 
         // Puedes verificar que el archivo exista
-        File audioFile = new File(sonidos.avance);
+        File audioFile = new File(sonidos.AVANCE_SONIDO);
         assertTrue(audioFile.exists());
     }
 
@@ -25,10 +25,10 @@ public class SonidosTest {
 
         // Verifica que la ruta del archivo de sonido para "rojo" sea correcta
         String expectedPath = "C:\\Users\\52229\\Downloads\\S21002431CruceVial\\ProyectoFX\\resources\\Detengase.wav";
-        assertEquals(expectedPath, sonidos.detengase); // Necesitas hacer que 'detengase' sea accesible
+        assertEquals(expectedPath, sonidos.DETENGASE_SONIDO); // Necesitas hacer que 'detengase' sea accesible
 
         // Puedes verificar que el archivo exista
-        File audioFile = new File(sonidos.detengase);
+        File audioFile = new File(sonidos.DETENGASE_SONIDO);
         assertTrue(audioFile.exists());
     }
 
@@ -41,7 +41,7 @@ public class SonidosTest {
 
         // Podrías verificar que los atributos 'avance' y 'detengase' 
         // tengan valores no nulos o válidos, por ejemplo
-        assertNotNull(sonidos.avance);
-        assertNotNull(sonidos.detengase);
+        assertNotNull(sonidos.AVANCE_SONIDO);
+        assertNotNull(sonidos.DETENGASE_SONIDO);
     }
 }
