@@ -6,3 +6,5 @@
 , Este: 0
 2024-12-05T17:39:31.5054927 - Norte/Sur: 0, Oeste: 0
 , Este: 0
+2024-12-05T18:30:25.7089247 - Norte/Sur: 0, Oeste: 0
+, Este: 0
