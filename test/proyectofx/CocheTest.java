@@ -23,13 +23,12 @@ public class CocheTest {
         Graphics2D g2d = image.createGraphics();
 
         // Crea un coche
-        Coche coche = new Coche(50, 50, 2, 0); // Moviéndose hacia la derecha
+        Coche coche = new Coche(50, 50, 2, 0); // Moviendose hacia la derecha
 
         // Dibuja el coche en la imagen
         coche.dibujar(g2d);
 
-        // Verifica que algunos píxeles del área del coche tengan el color esperado
-        // (esto es una prueba básica, podrías hacerla más exhaustiva)
+        // Verifica que algunos píxeles del area del coche tengan el color esperada
         assertColorEquals(coche.color, image.getRGB(60, 55)); // Color del cuerpo
         assertColorEquals(Color.CYAN, image.getRGB(60, 50)); // Color de la ventana
         assertColorEquals(Color.YELLOW, image.getRGB(85, 55)); // Color de la luz delantera
@@ -37,7 +36,7 @@ public class CocheTest {
         g2d.dispose();
     }
 
-    // Método auxiliar para comparar colores
+    // Metodo auxiliar para comparar colores
     private void assertColorEquals(Color expected, int actualRGB) {
         Color actual = new Color(actualRGB);
         assertEquals(expected.getRed(), actual.getRed());
@@ -55,6 +54,4 @@ public class CocheTest {
         assertEquals(20, bounds.height); // HEIGHT constante en la clase Coche
     }
 
-    // Puedes agregar más pruebas para los getters si es necesario
-    // ...
 }

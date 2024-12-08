@@ -36,11 +36,6 @@ public class SonidosTest {
     public void testReproducirAmbos() {
         Sonidos sonidos = new Sonidos();
 
-        // En este caso, no podemos verificar mucho sin Mockito, 
-        // ya que la lógica principal está en la interacción con AudioSystem
-
-        // Podrías verificar que los atributos 'avance' y 'detengase' 
-        // tengan valores no nulos o válidos, por ejemplo
         assertNotNull(sonidos.AVANCE_SONIDO);
         assertNotNull(sonidos.DETENGASE_SONIDO);
     }

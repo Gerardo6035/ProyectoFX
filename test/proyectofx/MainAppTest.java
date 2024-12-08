@@ -21,7 +21,7 @@ public class MainAppTest {
         mainApp.simulador.setContadorOeste(5);
         mainApp.simulador.setContadorEste(8);
 
-        // Llama al método guardarSimulacion()
+        // Llama al metodo guardarSimulacion()
         mainApp.guardarSimulacion();
 
         // Verifica que el archivo simulation_history.txt existe
@@ -31,7 +31,7 @@ public class MainAppTest {
         // Lee el contenido del archivo
         String content = new String(Files.readAllBytes(Paths.get("simulation_history.txt")));
 
-        // Verifica que el contenido del archivo incluye los datos de la simulación
+        // Verifica que el contenido del archivo incluye los datos de la simulacion
         assertTrue(content.contains("Norte/Sur: 10"));
         assertTrue(content.contains("Oeste: 5"));
         assertTrue(content.contains("Este: 8"));
@@ -43,7 +43,7 @@ public class MainAppTest {
     @Test
     public void testCerrarVentana() {
         // Crea una instancia de MainApp
-        MainApp mainApp = new MainApp();
+        MainApp MainApp = new MainApp();
 
         // Simula la confirmación del usuario para cerrar la ventana
         int input = JOptionPane.YES_OPTION; 
@@ -56,11 +56,8 @@ public class MainAppTest {
         // Simula el comportamiento del usuario seleccionando "Sí"
         optionPane.setValue(input); 
 
-        // Cierra el diálogo simulado
+        // Cierra el dialogo simulado
         dialog.setVisible(false); 
 
-        // Verifica que System.exit() se llama cuando se confirma el cierre
-        // Nota: Esta prueba no cerrará la aplicación real durante la ejecución de la prueba
-        // ya que estamos simulando el JOptionPane.
     }
 }

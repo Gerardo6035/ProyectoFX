@@ -19,7 +19,7 @@ public class PanelPrincipalTest {
 
         panel.carro = coches; // Asigna la lista de coches al panel
 
-        // Simula la actualización de los coches
+        // Simula la actualizacion de los coches
         panel.actualizarCoches();
 
         // Verifica que las posiciones de los coches se hayan actualizado
@@ -38,17 +38,17 @@ public class PanelPrincipalTest {
         PanelPrincipal panel = new PanelPrincipal();
         Coche cocheSur = new Coche(440, 200, 0, 5); // Coche en dirección sur
 
-        // Simula un semáforo en rojo para la dirección sur
+        // Simula un semaforo en rojo para la direccion sur
         Semaforos semaforoSur = panel.semaforos.get(0);
         semaforoSur.setGreen(false);
 
-        // Verifica que el coche deba detenerse en el semáforo en rojo
+        // Verifica que el coche deba detenerse en el semaforo en rojo
         assertTrue(panel.verificarAlto(cocheSur));
 
-        // Simula un semáforo en verde
+        // Simula un semaforo en verde
         semaforoSur.setGreen(true);
 
-        // Verifica que el coche no deba detenerse con el semáforo en verde
+        // Verifica que el coche no deba detenerse con el semaforo en verde
         assertFalse(panel.verificarAlto(cocheSur));
     }
 
@@ -67,16 +67,16 @@ public class PanelPrincipalTest {
     public void testCambiarLuzSemaforos() {
         PanelPrincipal panel = new PanelPrincipal();
 
-        // Simula que el semáforo vertical está en verde inicialmente
+        // Simula que el semaforo vertical esta en verde inicialmente
         panel.semaforos.get(0).setGreen(true);
 
-        // Cambia las luces de los semáforos
+        // Cambia las luces de los semaforos
         panel.cambiarLuzSemaforos();
 
         // Verifica que el semáforo vertical ahora esté en rojo
         assertFalse(panel.semaforos.get(0).esverde());
 
-        // Verifica que los semáforos horizontales ahora estén en verde
+        // Verifica que los semaforos horizontales ahora esten en verde
         assertTrue(panel.semaforos.get(1).esverde());
         assertTrue(panel.semaforos.get(2).esverde());
     }
@@ -102,15 +102,15 @@ public class PanelPrincipalTest {
     public void testYaCruzo() {
         PanelPrincipal panel = new PanelPrincipal();
 
-        // Simula un coche que ha cruzado el límite horizontal
+        // Simula un coche que ha cruzado el limite horizontal
         Coche cocheFuera = new Coche(1000, 300, 5, 0);
         assertTrue(panel.yaCruzo(cocheFuera));
 
-        // Simula un coche que ha cruzado el límite vertical
+        // Simula un coche que ha cruzado el limite vertical
         cocheFuera = new Coche(440, -100, 0, 5);
         assertTrue(panel.yaCruzo(cocheFuera));
 
-        // Simula un coche dentro de los límites
+        // Simula un coche dentro de los limites
         Coche cocheDentro = new Coche(400, 300, 5, 0);
         assertFalse(panel.yaCruzo(cocheDentro));
     }
